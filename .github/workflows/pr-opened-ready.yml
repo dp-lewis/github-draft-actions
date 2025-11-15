@@ -1,0 +1,24 @@
+name: PR Opened Ready
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  pr-opened-ready:
+    # Only run when PR is opened directly as ready (not draft)
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: PR opened as ready
+        run: |
+          echo "🚀 PR #${{ github.event.pull_request.number }} was opened directly as READY"
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "Author: ${{ github.event.pull_request.user.login }}"
+          echo "Draft status: ${{ github.event.pull_request.draft }}"
+          echo ""
+          echo "This workflow runs when a PR is created directly in ready mode (not draft)."

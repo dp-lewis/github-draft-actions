@@ -1,0 +1,24 @@
+name: PR Opened as Draft
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  pr-opened-as-draft:
+    # Only run when PR is opened in draft mode
+    if: github.event.pull_request.draft == true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: PR opened as draft
+        run: |
+          echo "🎉 PR #${{ github.event.pull_request.number }} was opened as a DRAFT"
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "Author: ${{ github.event.pull_request.user.login }}"
+          echo "Draft status: ${{ github.event.pull_request.draft }}"
+          echo ""
+          echo "This workflow runs when a PR is initially created in draft mode."
