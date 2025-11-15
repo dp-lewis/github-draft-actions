@@ -1,4 +1,4 @@
-# github-draft-actions
+# Github Draft Actions
 
 This repository demonstrates how to trigger GitHub Actions based on different pull request draft states.
 
