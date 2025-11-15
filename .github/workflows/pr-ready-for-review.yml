@@ -1,0 +1,24 @@
+name: PR Ready for Review
+
+on:
+  pull_request:
+    types: [ready_for_review]
+
+jobs:
+  pr-ready-for-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: PR marked ready for review
+        run: |
+          echo "✅ PR #${{ github.event.pull_request.number }} is now READY FOR REVIEW"
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "Author: ${{ github.event.pull_request.user.login }}"
+          echo "Draft status: ${{ github.event.pull_request.draft }}"
+          echo ""
+          echo "This workflow runs when a draft PR is converted to ready for review."
