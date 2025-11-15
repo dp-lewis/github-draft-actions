@@ -9,6 +9,8 @@ jobs:
     # Only run when PR is opened directly as ready (not draft)
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     steps:
       - name: Checkout code
